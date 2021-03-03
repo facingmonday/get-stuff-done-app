@@ -1,0 +1,35 @@
+module.exports = [
+  {
+    id: '2ofnoi2nfeoifiofo2n',
+    stripeCustomerId: 'cus_InD6MODH9LBA75',
+    name: 'Test User',
+    email: 'test@test.com',
+    tags: ['123', '456', '789'],
+    description: 'Metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices.',
+    role: 'USER',
+  },
+  {
+    id: '2ofnoi2nfeoifiofo2n76',
+    stripeCustomerId: 'cus_InD6MODH9LBA76',
+    name: 'Father Andy',
+    email: 'instructor1@test.com',
+    role: 'ADMIN',
+    description: 'Odio eu feugiat pretium nibh ipsum. Vel facilisis volutpat est velit.',
+  },
+  {
+    id: '2ofnoi2nfeoifiofo2n77',
+    stripeCustomerId: 'cus_InD6MODH9LBA77',
+    name: 'Father Bernard',
+    email: 'instructor2@test.com',
+    role: 'ADMIN',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. ',
+  },
+  {
+    id: '2ofnoi2nfeoifiofo2n78',
+    stripeCustomerId: 'cus_InD6MODH9LBA77',
+    name: 'Father Claud',
+    email: 'instructor3@test.com',
+    role: 'ADMIN',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod et dolore magna aliqua. ',
+  },
+];

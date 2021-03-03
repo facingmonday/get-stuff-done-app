@@ -1,0 +1,9 @@
+export const FETCH_ACTION = 'app/action/FETCH_ACTION';
+export const FETCH_ACTIONS = 'app/action/FETCH_ACTIONS';
+export const CREATE_ACTION = 'app/action/CREATE_ACTION';
+export const UPDATE_ACTION = 'app/action/UPDATE_ACTION';
+export const DELETE_ACTION = 'app/action/DELETE_ACTION';
+export const ADD_ACTION_TO_BY_ID = 'app/action/ADD_ACTION_TO_BY_ID';
+export const ADD_MULTIPLE_ACTIONS_TO_BY_ID = 'app/action/ADD_MULTIPLE_ACTIONS_TO_BY_ID';
+export const UPDATE_ACTION_BY_ID = 'app/action/UPDATE_ACTION_BY_ID';
+export const DELETE_ACTION_BY_ID = 'app/action/DELETE_ACTION_BY_ID';

@@ -1,0 +1,36 @@
+module.exports = [
+  {
+    id: 'prod_ImLiyZDEY9QBl4',
+    object: 'product',
+    active: true,
+    attributes: [],
+    created: 1610935106,
+    description: 'This is the first plan created in the mock data account.',
+    images: [],
+    livemode: false,
+    metadata: {
+      createdByName: 'Teacher 1',
+    },
+    name: 'Plan One',
+    statement_descriptor: null,
+    unit_label: null,
+    updated: 1610935106,
+  },
+  {
+    id: 'prod_ImLiyZDEY912313',
+    object: 'product',
+    active: true,
+    attributes: [],
+    created: 1610935106,
+    description: 'Plan 2',
+    images: [],
+    livemode: false,
+    metadata: {
+      createdByName: 'Teacher 1',
+    },
+    name: 'Plan 2',
+    statement_descriptor: null,
+    unit_label: null,
+    updated: 1610935106,
+  },
+];
