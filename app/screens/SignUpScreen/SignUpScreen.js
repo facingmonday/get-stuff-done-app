@@ -20,7 +20,9 @@ const SignUpScreen = ({
 
   return (
     <Page>
-      <SignUpForm />
+      <View>
+        <SignUpForm />
+      </View>
       <View style={styles.goBackContainer}>
         <Text onPress={() => goBack()} style={styles.backText}>
           Go Back

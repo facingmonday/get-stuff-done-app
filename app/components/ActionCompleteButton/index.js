@@ -4,30 +4,23 @@ import { useNavigation } from '@react-navigation/native';
 
 // Selectors
 import { selectAuth } from '../../selectors/auth';
-import { selectLoading, selectError } from '../../selectors/stateKeys';
-import { makeCanCompleteAction } from '../../selectors/completedAction';
+import { selectLoading, selectError } from '../../selectors/app';
 
 // Actions
-import { saveCompletedAction } from '../../actions/completedAction';
-import { setNextHref } from '../../actions/stateKeys';
+import { setNextHref } from '../../actions/app';
 
 // Component
 import ActionCompleteButton from './ActionCompleteButton';
 
-const STATE_KEY = 'completedAction';
-
 export default (props) => {
   const dispatch = useDispatch();
-  const canCompleteAction = useMemo(makeCanCompleteAction);
 
   return React.createElement(ActionCompleteButton, {
     ...props,
     auth: useSelector(selectAuth),
-    canCompleteAction: useSelector((state) => canCompleteAction(state, props)),
-    error: useSelector(selectError(STATE_KEY)),
-    loading: useSelector(selectLoading(STATE_KEY)),
+    error: useSelector(selectError),
+    loading: useSelector(selectLoading),
     navigation: useNavigation(),
-    saveCompletedAction: (completedAction) => dispatch(saveCompletedAction(completedAction)),
-    setNextHref: (nextHref) => dispatch(setNextHref(STATE_KEY, nextHref)),
+    setNextHref: (nextHref) => dispatch(setNextHref(nextHref)),
   });
 };

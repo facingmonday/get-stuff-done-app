@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 // Selectors
 import { selectAuth } from '../../selectors/auth';
-import { selectLoading } from '../../selectors/stateKeys';
+import { selectLoading } from '../../selectors/app';
 
 // Actions
 import { fetchMe, loginUser, logoutUser } from '../../actions/auth';
@@ -17,7 +17,7 @@ export default (props) => {
   return React.createElement(ProfileScreen, {
     ...props,
     auth: useSelector(selectAuth),
-    loading: useSelector(selectLoading('auth')),
+    loading: useSelector(selectLoading),
     logoutUser: () => dispatch(logoutUser()),
     loginUser: (data) => dispatch(loginUser(data)),
     fetchMe: () => dispatch(fetchMe()),

@@ -5,6 +5,9 @@ import {
   LOGIN_USER,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAILURE,
+  LOGIN_WITH_FACEBOOK,
+  LOGIN_WITH_FACEBOOK_SUCCESS,
+  LOGIN_WITH_FACEBOOK_FAILURE,
   LOGOUT_USER,
   EXTERNAL_LOGIN_SUCCESS,
   REGISTER_USER,
@@ -15,6 +18,9 @@ import {
   SAVE_PROFILE,
   SAVE_PROFILE_FAILURE,
   SAVE_PROFILE_SUCCESS,
+  SIGN_IN_ANONYMOUSLY,
+  SIGN_IN_ANONYMOUSLY_SUCCESS,
+  SIGN_IN_ANONYMOUSLY_FAILURE,
   RESET,
 } from '../constants/auth';
 
@@ -115,6 +121,41 @@ export function saveProfileSuccess(response) {
 export function saveProfileFailure(error) {
   return {
     type: SAVE_PROFILE_FAILURE,
+    error,
+  };
+}
+export function loginWithFacebook(credentials) {
+  return {
+    type: LOGIN_WITH_FACEBOOK,
+    credentials,
+  };
+}
+export function loginWithFacebookSuccess(user) {
+  return {
+    type: LOGIN_WITH_FACEBOOK_SUCCESS,
+    user,
+  };
+}
+export function loginWithFacebookFailure(error) {
+  return {
+    type: LOGIN_WITH_FACEBOOK_FAILURE,
+    error,
+  };
+}
+export function signInAnonymously() {
+  return {
+    type: SIGN_IN_ANONYMOUSLY,
+  };
+}
+export function signInAnonymouslySuccess(user) {
+  return {
+    type: SIGN_IN_ANONYMOUSLY_SUCCESS,
+    user,
+  };
+}
+export function signInAnonymouslyFailure(error) {
+  return {
+    type: SIGN_IN_ANONYMOUSLY_FAILURE,
     error,
   };
 }

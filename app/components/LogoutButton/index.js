@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 // Selectors
 import { selectAuth } from '../../selectors/auth';
-import { selectNextHref } from '../../selectors/stateKeys';
+import { selectNextHref } from '../../selectors/app';
 
 // Actions
 import { logoutUser } from '../../actions/auth';
@@ -19,6 +19,6 @@ export default (props) => {
     navigation: useNavigation(),
     auth: useSelector(selectAuth),
     logoutUser: () => dispatch(logoutUser()),
-    nextHref: useSelector(selectNextHref('auth')),
+    nextHref: useSelector(selectNextHref),
   });
 };

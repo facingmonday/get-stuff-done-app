@@ -4,11 +4,10 @@ import { useNavigation } from '@react-navigation/native';
 
 // Selectors
 import { selectAuth } from '../../selectors/auth';
-import { selectLoading, selectError, selectNextHref } from '../../selectors/stateKeys';
+import { selectLoading, selectError } from '../../selectors/app';
 
 // Actions
-import { createAction } from '../../actions/action';
-import { setNextHref } from '../../actions/stateKeys';
+import { saveAction, resetAction } from '../../actions/action';
 
 // Component
 import ActionCreateForm from './ActionCreateForm';
@@ -20,11 +19,10 @@ export default (props) => {
   return React.createElement(ActionCreateForm, {
     ...props,
     auth: useSelector(selectAuth),
-    loading: useSelector(selectLoading(STATE_KEY)),
-    error: useSelector(selectError(STATE_KEY)),
+    error: useSelector(selectError),
+    loading: useSelector(selectLoading),
     navigation: useNavigation(),
-    nextHref: useSelector(selectNextHref(STATE_KEY)),
-    createAction: (action) => dispatch(createAction(action)),
-    setNextHref: (nextHref) => dispatch(setNextHref(STATE_KEY, nextHref)),
+    resetAction: () => dispatch(resetAction()),
+    saveAction: (action) => dispatch(saveAction(action)),
   });
 };

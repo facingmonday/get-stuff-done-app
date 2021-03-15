@@ -2,13 +2,11 @@ import React from 'react';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { Provider } from 'react-redux';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import 'react-native-gesture-handler';
-
 import * as eva from '@eva-design/eva';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
-
 import Navigation from './app/navigation';
 import theme from './app/theme/custom-theme.json';
 import configureStore from './app/store';

@@ -1,94 +1,101 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import { addDays, format } from 'date-fns';
+import { v4 as uuidv4 } from 'uuid';
+import { addDays } from 'date-fns';
 import {
-  Input, Text, Spinner,
+  Input, Radio, RadioGroup, Spinner,
 } from '@ui-kitten/components';
-import Button from '../Button';
-import Alert from '../Alert';
+import Text from '@components/Text';
+import Button from '@components/Button';
+import Alert from '@components/Alert';
+
 import styles from './ActionCreateForm.styles';
 
 const ActionCreateForm = ({
-  complete = false,
-  date = 'today',
+  complete,
   error,
   loading,
-  resetStateKey,
-  saveAction,
   onComplete = () => null,
-  createAction,
+  resetAction,
+  saveAction,
 }) => {
   const [name, setName] = useState();
   const [description, setDescription] = useState();
+  const [today, setToday] = useState(true);
 
   const handleCreateAction = () => {
-    createAction({
-      name,
-      description,
-      date: (date == 'today') ? format(new Date(), 'MM/dd/yyyy') : format(addDays(new Date(), 1), 'MM/dd/yyyy'),
-      complete: false,
-    });
+    if (name) {
+      saveAction({
+        id: uuidv4(),
+        name,
+        description,
+        date: today ? new Date().getTime() : addDays(new Date(), 1).getTime(),
+        complete: false,
+      });
+    }
   };
 
-  const handleResetForm = () => {
-    resetStateKey('action');
-  };
-
-  const handleClose = () => {
-    onComplete();
-  };
+  useEffect(() => {
+    setName('');
+    setDescription('');
+    resetAction();
+  }, [complete]);
 
   if (loading) {
-    return (
-      <View>
-        <View style={styles.loadingSpinnerContainer}>
-          <Spinner size="large" />
-        </View>
-      </View>
-    );
+    return <Spinner size="large" />;
   }
-  if (complete) {
-    <View style={styles.actionCreateForm}>
-      <View style={styles.row}>
-        <Button style={styles.createButton} onPress={handleClose}>Done</Button>
-      </View>
-      <View style={styles.row}>
-        <Button style={styles.createButton} onPress={handleResetForm}>Create Another</Button>
-      </View>
-    </View>;
-  }
+
   return (
     <View style={styles.actionCreateForm}>
-      { error && <View style={styles.row}><Alert>{ error?.message ? error.message : 'Something went wrong'}</Alert></View>}
-      <View style={styles.row}>
-        <Input
-          value={name}
-          label={() => <Text category="p2">Critical Task</Text>}
-          placeholder="Enter the name of the action"
-          caption="Shower once per day, Cardio three times a week, etc.."
-          onChangeText={(nextValue) => setName(nextValue)}
-        />
-      </View>
-      <View style={styles.row}>
-        <Input
-          multiline
-          textStyle={{ minHeight: 64 }}
-          value={description}
-          label={() => <Text category="p2">Notes</Text>}
-          placeholder="Enter the name of the action"
-          caption="Shower once per day, Cardio three times a week, etc.."
-          onChangeText={(nextValue) => setDescription(nextValue)}
-        />
-      </View>
-      <View style={styles.buttonRow}>
-        <Button
-          buttonStyles={styles.buttonStyles}
-          textStyles={styles.textStyles}
-          onPress={handleCreateAction}
-        >
-          Create Critical Task
-        </Button>
-      </View>
+      <>
+        { error && (
+        <View style={styles.row}>
+          <Alert>{ error?.message ? error.message : 'Something went wrong'}</Alert>
+        </View>
+        )}
+        <View style={[styles.row, { alignItems: 'center' }]}>
+          <Text category="h4">CREATE ACTION</Text>
+        </View>
+        <View style={styles.row}>
+          <RadioGroup
+            selectedIndex={today ? 0 : 1}
+            onChange={(index) => setToday(!index)}
+          >
+            <Radio style={{ color: 'red' }}><Text category="h6">Today</Text></Radio>
+            <Radio style={{ color: 'red' }}><Text category="h6">Tomorrow</Text></Radio>
+          </RadioGroup>
+        </View>
+
+        <View style={styles.row}>
+          <Input
+            value={name}
+            label={() => <Text category="p2">Critical Task</Text>}
+            placeholder="Enter the name of the action"
+            caption="Go to the gym, send that email, etc.."
+            onChangeText={(nextValue) => setName(nextValue)}
+          />
+        </View>
+        <View style={styles.row}>
+          <Input
+            multiline
+            textStyle={{ minHeight: 84 }}
+            value={description}
+            label={() => <Text category="p2">Notes</Text>}
+            placeholder="Enter the name of the action"
+            caption="This is high priority, Get done by 9am, etc.."
+            onChangeText={(nextValue) => setDescription(nextValue)}
+          />
+        </View>
+        <View style={styles.row}>
+          <Button
+            buttonStyles={styles.buttonStyles}
+            onPress={handleCreateAction}
+          >
+            Create Task
+          </Button>
+        </View>
+      </>
+
     </View>
   );
 };

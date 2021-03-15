@@ -1,3 +1,4 @@
+import * as Facebook from 'expo-facebook';
 import firebase from '../services/firebase';
 
 export async function loginUser(credentials) {
@@ -83,4 +84,46 @@ export async function createUserWithEmailAndPassword(email, password) {
 
 export async function signInWithEmailAndPassword(email, password) {
   return firebase.auth().signInWithEmailAndPassword(email, password);
+}
+
+export async function loginWithFacebook() {
+  // https://power-list-cc413.firebaseapp.com/__/auth/handler
+  await Facebook.initializeAsync('264102915202827');
+  const { type, token } = await Facebook.logInWithReadPermissionsAsync({
+    permissions: ['public_profile'],
+  });
+
+  if (type === 'success') {
+    // Build Firebase credential with the Facebook access token.
+    const credential = firebase.auth.FacebookAuthProvider.credential(token);
+
+    // Sign in with credential from the Facebook user.
+    const result = await firebase.auth().signInWithCredential(credential);
+    return result;
+  }
+
+  // const provider = new firebase.auth.FacebookAuthProvider();
+  // provider.setCustomParameters({
+  //   display: 'popup',
+  // });
+  // // const result = await firebase.auth().signInWithPopup(provider);
+  // const result = await firebase.auth().signInWithRedirect(provider);
+  // console.log('result', result);
+  // const { credential: { accessToken }, user } = result;
+  // console.log('accessToken', accessToken);
+  // if (user) {
+  //   return {
+  //     ...user.toJSON(),
+  //     token: accessToken,
+  //   };
+  // }
+  const e = new Error();
+  e.code = 'auth';
+  e.message = 'Unable to login user';
+  throw e;
+}
+
+export async function signInAnonymously() {
+  await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+  return firebase.auth().signInAnonymously();
 }

@@ -1,8 +1,9 @@
 import {
   all, call, put, takeLatest, select, delay,
 } from 'redux-saga/effects';
-
+import { Toast } from 'native-base';
 // Constants
+import { loadAssets } from '@actions/asset';
 import { LOAD_APP } from '../constants/app';
 
 // Actions
@@ -10,8 +11,6 @@ import {
   loadAppSuccess,
   loadAppFailure,
 } from '../actions/app';
-import { setNextHref } from '../actions/stateKeys';
-import { fetchActions } from '../actions/action';
 
 // Selectors
 import { selectAuth } from '../selectors/auth';
@@ -25,10 +24,9 @@ import { fetchActions as fetchActionsApi } from '../apis/action';
 
 function* performLoadAppAction(action) {
   try {
-    console.log('performLoadAppAction');
+    yield put(loadAssets());
     yield put(loadAppSuccess());
   } catch (e) {
-    console.log('performLoadAppAction', e);
     yield put(loadAppFailure(e));
   }
 }

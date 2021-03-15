@@ -7,6 +7,10 @@ export default StyleSheet.create({
     alignItems: 'center',
     marginBottom: 40,
   },
+  actionRowSmall: {
+    marginBottom: 10,
+    minHeight: 30,
+  },
   textContainer: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -28,6 +32,9 @@ export default StyleSheet.create({
     fontFamily: 'Good-Times',
     color: COLORS.LIGHT_TEXT,
     textAlign: 'center',
+  },
+  actionNameSmall: {
+    fontSize: 16,
   },
   actionNameComplete: {
     color: COLORS.DARK_TEXT,

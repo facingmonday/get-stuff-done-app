@@ -3,7 +3,6 @@ import firebase from '../services/firebase';
 export const fetchActions = async (options = {}) => {
   const { currentUser } = firebase.auth();
   if (currentUser) {
-    console.log('currentUser', currentUser.uid);
     let query = await firebase.firestore().collection(`user/${currentUser.uid}/actions`);
     if (options?.filters?.length) {
       options.filters.forEach((o) => {
@@ -12,7 +11,9 @@ export const fetchActions = async (options = {}) => {
     }
     const querySnapshot = await query.get();
     const results = [];
-    querySnapshot.forEach((doc) => results.push({ id: doc.id, ...(doc.data()) }));
+    querySnapshot.forEach((doc) => {
+      results.push({ id: doc.id, ...(doc.data()) });
+    });
     return results;
   }
   throw new Error('Failed to fetch actions for current user.');
@@ -37,17 +38,12 @@ export const fetchAction = async (id) => {
 
 export const createAction = async (action) => {
   const { currentUser } = firebase.auth();
-  if (currentUser) {
-    const docRef = await firebase
-      .firestore()
-      .collection(`user/${currentUser.uid}/actions`)
-      .add(action);
-    if (docRef.id) {
-      const docSnapshot = await docRef.get();
-      return docSnapshot.data();
-    }
-  }
-  throw new Error('Failed to create.');
+  const { id, ...restAction } = action;
+  await firebase
+    .firestore()
+    .collection(`user/${currentUser.uid}/actions`)
+    .doc(id)
+    .set(JSON.parse(JSON.stringify(restAction)));
 };
 
 export const updateAction = async (action) => {
@@ -58,7 +54,7 @@ export const updateAction = async (action) => {
       .firestore()
       .collection(`user/${currentUser.uid}/actions`)
       .doc(id)
-      .set(restAction, { merge: true });
+      .set(JSON.parse(JSON.stringify(restAction)));
     return {
       id, ...restAction,
     };
@@ -69,16 +65,12 @@ export const updateAction = async (action) => {
 export const deleteAction = async (id) => {
   const { currentUser } = firebase.auth();
   if (currentUser) {
-    const querySnapshot = await firebase
+    await firebase
       .firestore()
-      .collection('user')
-      .doc(currentUser.uid)
-      .collection('actions')
+      .collection(`user/${currentUser.uid}/actions`)
       .doc(id)
-      .get();
-    const results = [];
-    querySnapshot.forEach((doc) => results.push({ id: doc.id, ...(doc.data()) }));
-    return results;
+      .delete();
+    return;
   }
   throw new Error('Failed to delete.');
 };

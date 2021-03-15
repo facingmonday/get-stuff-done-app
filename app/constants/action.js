@@ -1,9 +1,13 @@
 export const FETCH_ACTION = 'app/action/FETCH_ACTION';
 export const FETCH_ACTIONS = 'app/action/FETCH_ACTIONS';
 export const CREATE_ACTION = 'app/action/CREATE_ACTION';
+export const SAVE_ACTION = 'app/action/SAVE_ACTION';
+export const SAVE_ACTION_SUCCESS = 'app/action/SAVE_ACTION_SUCCESS';
+export const SAVE_ACTION_FAILURE = 'app/action/SAVE_ACTION_FAILURE';
 export const UPDATE_ACTION = 'app/action/UPDATE_ACTION';
 export const DELETE_ACTION = 'app/action/DELETE_ACTION';
 export const ADD_ACTION_TO_BY_ID = 'app/action/ADD_ACTION_TO_BY_ID';
 export const ADD_MULTIPLE_ACTIONS_TO_BY_ID = 'app/action/ADD_MULTIPLE_ACTIONS_TO_BY_ID';
 export const UPDATE_ACTION_BY_ID = 'app/action/UPDATE_ACTION_BY_ID';
 export const DELETE_ACTION_BY_ID = 'app/action/DELETE_ACTION_BY_ID';
+export const RESET_ACTION = 'app/action/RESET_ACTION';

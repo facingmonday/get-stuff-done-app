@@ -10,9 +10,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 20,
     paddingBottom: 20,
-    borderRadius: 0,
+    borderRadius: 15,
     alignSelf: 'stretch',
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(0,0,0,.5)',
   },
 });
 

@@ -6,7 +6,9 @@ import { useNavigation } from '@react-navigation/native';
 import { selectAuth } from '../../selectors/auth';
 
 // Actions
-import { fetchMe, loginUser, externalLoginSuccess } from '../../actions/auth';
+import {
+  fetchMe, loginUser, externalLoginSuccess, loginWithFacebook,
+} from '../../actions/auth';
 
 // Component
 import SignInForm from './SignInForm';
@@ -20,5 +22,6 @@ export default (props) => {
     loginUser: (credentials) => dispatch(loginUser(credentials)),
     externalLoginSuccess: (code) => dispatch(externalLoginSuccess(code)),
     fetchMe: () => dispatch(fetchMe()),
+    loginWithFacebook: () => dispatch(loginWithFacebook()),
   });
 };

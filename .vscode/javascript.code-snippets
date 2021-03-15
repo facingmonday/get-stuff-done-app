@@ -142,7 +142,7 @@
     "description": "Constants CRUD"
   },
 	"Action": {
-    "prefix": "mc_action",
+    "prefix": "mc_actions",
     "body": [
       "import {",
       "  ${1:UPPERCASE},",
@@ -171,6 +171,19 @@
       ""
     ],
     "description": "Action"
+  },
+  "Single Action Function": {
+    "prefix": "mc_action",
+    "body": [
+      "export function ${1:camelCase}(${2:arg}) {",
+      "  return {",
+      "    type: ${3:UPPERCASE},",
+      "    ${2:arg},",
+      "  };",
+      "}",
+      ""
+    ],
+    "description": "A single action function"
   },
 	"Action CRUD": {
     "prefix": "mc_action_crud",

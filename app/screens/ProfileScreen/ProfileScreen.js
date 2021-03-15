@@ -4,6 +4,7 @@ import { useIsFocused } from '@react-navigation/native';
 import { Button, Spinner } from '@ui-kitten/components';
 import { Block } from 'galio-framework';
 import Page from '../../components/Page';
+import PageCard from '../../components/PageCard';
 import UserProfile from '../../components/UserProfile';
 import LogoutButton from '../../components/LogoutButton';
 
@@ -19,7 +20,7 @@ const ProfileScreen = ({
       title: 'Profile',
       headerShown: false,
     });
-    // fetchMe();
+    fetchMe();
   }, [isFocused]);
 
   if (loading) {
@@ -37,9 +38,9 @@ const ProfileScreen = ({
   }
   return (
     <Page>
-      <Block row style={{ marginBottom: 20 }}>
+      <PageCard>
         <UserProfile />
-      </Block>
+      </PageCard>
       <Block row center>
         <LogoutButton />
       </Block>

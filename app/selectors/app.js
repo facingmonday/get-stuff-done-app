@@ -9,10 +9,33 @@ export const selectApp = createSelector(
 
 export const selectLoading = createSelector(
   selectApp,
-  ({ loading }) => loading,
+  (app) => {
+    console.log('app.loading', app);
+    return app?.loading;
+  },
 );
 
 export const selectLoaded = createSelector(
   selectAppDomain,
   ({ loaded }) => loaded,
+);
+
+export const selectError = createSelector(
+  selectAppDomain,
+  ({ error }) => error,
+);
+
+export const selectNextHref = createSelector(
+  selectAppDomain,
+  ({ nextHref }) => nextHref,
+);
+
+export const selectShowModal = createSelector(
+  selectAppDomain,
+  ({ showModal }) => showModal,
+);
+
+export const selectToast = createSelector(
+  selectAppDomain,
+  ({ toast }) => toast,
 );

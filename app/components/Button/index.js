@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 // Selectors
 import { selectAuth } from '../../selectors/auth';
-import { selectLoading, selectError, selectNextHref } from '../../selectors/stateKeys';
+import { selectLoading, selectError, selectNextHref } from '../../selectors/app';
 
 // Actions
 

@@ -3,17 +3,16 @@ import { Block } from 'galio-framework';
 import { View, StyleSheet } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import {
-  Button, Text, Layout, Input, Spinner,
+  Input, Spinner,
 } from '@ui-kitten/components';
-import {
-  AppleLoginButton, FacebookLoginButton, GoogleLoginButton, OktaLoginButton,
-} from '../SocialLoginButtons';
-import { COLORS, globalStyles } from '../../theme';
+
+import Button from '@components/Button';
+import Text from '@components/Text';
+import { globalStyles } from '../../theme';
 
 import { registerForPushNotificationsAsync } from '../../utils';
 
 import styles from './SignInForm.styles';
-import { setNextHref } from '../../actions/stateKeys';
 import Alert from '../Alert';
 
 const SignInForm = ({
@@ -22,6 +21,7 @@ const SignInForm = ({
   loading,
   loginUser,
   navigation: { navigate },
+  loginWithFacebook,
 }) => {
   const [expoPushToken, setExpoPushToken] = useState();
   const [email, setEmail] = useState('jay.price@morelandconnect.com');
@@ -64,7 +64,7 @@ const SignInForm = ({
         <Text style={styles.headerText} category="h1">Sign In</Text>
       </Block>
       {
-        auth.loading
+        false
           ? (
             <Block center style={[globalStyles.marginBottom10]}>
               <Spinner size="giant" />

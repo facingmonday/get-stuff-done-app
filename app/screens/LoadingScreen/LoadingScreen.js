@@ -6,7 +6,7 @@ import { COLORS } from '../../theme';
 import firebase from '../../services/firebase';
 
 const LoadingScreen = ({
-  auth, loadApp, navigation: { navigate, setOptions }, loaded,
+  auth, loadApp, navigation: { navigate, setOptions }, loaded, route,
 }) => {
   const isFocused = useIsFocused();
 
@@ -14,6 +14,7 @@ const LoadingScreen = ({
     setOptions({
       headerShown: false,
     });
+    loadApp();
   }, [isFocused]);
 
   useEffect(
@@ -25,7 +26,7 @@ const LoadingScreen = ({
           navigate('GetStarted');
         }
       });
-    },
+    }, [],
   );
 
   return (

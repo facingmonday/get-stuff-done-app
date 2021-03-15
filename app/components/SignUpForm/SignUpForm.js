@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import {
-  Text, Input, Button, Spinner,
+  Text, Input, Spinner,
 } from '@ui-kitten/components';
+import Button from '../Button';
 import { registerForPushNotificationsAsync } from '../../utils';
 import Alert from '../Alert';
 import styles from './SignUpForm.styles';
 
 function SignInForm({
-  auth, loading, error, nextHref, navigation: { navigate }, registerUser,
+  auth, loading, error, nextHref, navigation: { navigate }, registerUser, signInAnonymously,
 }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [name, setName] = useState();
-  const [city, setCity] = useState();
-  const [state, setState] = useState();
-  const [zip, setZip] = useState();
   const [expoPushToken, setExpoPushToken] = useState();
 
   useEffect(() => {
@@ -26,27 +24,24 @@ function SignInForm({
     register();
   }, []);
 
-  useEffect(() => {
-    if (auth.token) {
-      navigate('Welcome');
-    }
-  }, [auth.token]);
-
   const handleSubmit = () => {
     registerUser({
       expoPushToken,
       email,
       password,
       name,
-      city,
-      state,
-      zip,
     });
   };
   return (
     <>
       <View style={styles.titleContainer}>
         <Text category="h1">Sign Up</Text>
+      </View>
+      <View>
+        <Button onPress={() => signInAnonymously()}>Use Anonymously</Button>
+      </View>
+      <View>
+        <Text category="p1">Or Create An Account</Text>
       </View>
       { Boolean(auth.error) && (
       <View style={styles.titleContainer}>
@@ -79,26 +74,8 @@ function SignInForm({
               <Input
                 value={name}
                 style={styles.input}
-                label={(evaProps) => <Text {...evaProps}>Name</Text>}
+                label={(evaProps) => <Text {...evaProps}>Display Name</Text>}
                 onChangeText={(nextValue) => setName(nextValue)}
-              />
-              <Input
-                value={city}
-                style={styles.input}
-                label={(evaProps) => <Text {...evaProps}>City</Text>}
-                onChangeText={(nextValue) => setCity(nextValue)}
-              />
-              <Input
-                value={state}
-                style={styles.input}
-                label={(evaProps) => <Text {...evaProps}>State</Text>}
-                onChangeText={(nextValue) => setState(nextValue)}
-              />
-              <Input
-                value={zip}
-                style={styles.input}
-                label={(evaProps) => <Text {...evaProps}>Zip</Text>}
-                onChangeText={(nextValue) => setZip(nextValue)}
               />
 
               <View style={styles.buttonContainer}>

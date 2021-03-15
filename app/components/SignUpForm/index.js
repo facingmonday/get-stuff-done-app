@@ -4,10 +4,10 @@ import { useNavigation } from '@react-navigation/native';
 
 // Selectors
 import { selectAuth } from '../../selectors/auth';
-import { selectNextHref } from '../../selectors/stateKeys';
+import { selectNextHref } from '../../selectors/app';
 
 // Actions
-import { registerUser } from '../../actions/auth';
+import { registerUser, signInAnonymously } from '../../actions/auth';
 
 // Component
 import SignUpForm from './SignUpForm';
@@ -20,6 +20,7 @@ export default (props) => {
     navigation,
     auth: useSelector(selectAuth),
     registerUser: (user) => dispatch(registerUser(user)),
-    nextHref: useSelector(selectNextHref('auth')),
+    nextHref: useSelector(selectNextHref),
+    signInAnonymously: () => dispatch(signInAnonymously()),
   });
 };

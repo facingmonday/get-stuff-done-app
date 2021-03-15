@@ -2,6 +2,9 @@ import {
   LOGIN_USER,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAILURE,
+  LOGIN_WITH_FACEBOOK,
+  LOGIN_WITH_FACEBOOK_SUCCESS,
+  LOGIN_WITH_FACEBOOK_FAILURE,
   RESET_LOGGED_IN_USER,
   LOGOUT_USER,
   FETCH_ME,
@@ -128,6 +131,9 @@ export default (state = initialState, action) => {
         loading: false,
         error: action.error,
       };
+    case LOGIN_WITH_FACEBOOK:
+    case LOGIN_WITH_FACEBOOK_SUCCESS:
+    case LOGIN_WITH_FACEBOOK_FAILURE:
     case RESET:
       return initialState;
     default:
