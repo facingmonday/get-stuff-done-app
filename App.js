@@ -11,6 +11,8 @@ import Navigation from './app/navigation';
 import theme from './app/theme/custom-theme.json';
 import configureStore from './app/store';
 
+import 'react-native-get-random-values';
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     'Good-Times': require('./assets/fonts/goodtimes.ttf'),

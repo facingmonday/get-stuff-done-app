@@ -142,9 +142,10 @@ export function loginWithFacebookFailure(error) {
     error,
   };
 }
-export function signInAnonymously() {
+export function signInAnonymously(options) {
   return {
     type: SIGN_IN_ANONYMOUSLY,
+    options,
   };
 }
 export function signInAnonymouslySuccess(user) {

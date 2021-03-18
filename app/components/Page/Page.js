@@ -21,11 +21,10 @@ const Page = ({
     wait(2000).then(() => setRefreshing(false));
   }, []);
 
-  console.log('assets', assets);
   return (
     <ImageBackground
       source={{ uri: assets?.['background-darker']?.localUri }}
-      style={{ width: '100%', height: '100%' }}
+      style={{ width: '100%', height: '100%', backgroundColor: '#333' }}
     >
       <SafeAreaView>
         <KeyboardAwareScrollView

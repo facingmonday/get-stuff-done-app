@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import { v4 as uuidv4 } from 'uuid';
+import { v1 as uuidv1 } from 'uuid';
 import { addDays } from 'date-fns';
 import {
   Input, Radio, RadioGroup, Spinner,
@@ -26,7 +26,7 @@ const ActionCreateForm = ({
   const handleCreateAction = () => {
     if (name) {
       saveAction({
-        id: uuidv4(),
+        id: uuidv1(),
         name,
         description,
         date: today ? new Date().getTime() : addDays(new Date(), 1).getTime(),
@@ -40,10 +40,6 @@ const ActionCreateForm = ({
     setDescription('');
     resetAction();
   }, [complete]);
-
-  if (loading) {
-    return <Spinner size="large" />;
-  }
 
   return (
     <View style={styles.actionCreateForm}>
@@ -86,13 +82,20 @@ const ActionCreateForm = ({
             onChangeText={(nextValue) => setDescription(nextValue)}
           />
         </View>
-        <View style={styles.row}>
-          <Button
-            buttonStyles={styles.buttonStyles}
-            onPress={handleCreateAction}
-          >
-            Create Task
-          </Button>
+        <View style={styles.buttonRow}>
+          {
+            loading
+              ? <Spinner size="large" />
+              : (
+                <Button
+                  buttonStyles={styles.buttonStyles}
+                  onPress={handleCreateAction}
+                >
+                  Create Task
+                </Button>
+              )
+          }
+
         </View>
       </>
 

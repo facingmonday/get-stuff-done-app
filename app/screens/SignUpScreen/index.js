@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectAuth } from '../../selectors/auth';
 
 // Actions
-import { signUp } from '../../actions/auth';
+import { signInAnonymously } from '../../actions/auth';
 
 // Component
 import SignUpScreen from './SignUpScreen';
@@ -15,6 +15,6 @@ export default (props) => {
   return React.createElement(SignUpScreen, {
     ...props,
     auth: useSelector(selectAuth),
-    signUp: () => dispatch(signUp()),
+    signInAnonymously: (options) => dispatch(signInAnonymously(options)),
   });
 };

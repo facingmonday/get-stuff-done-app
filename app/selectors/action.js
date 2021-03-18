@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import {
-  addDays, format, getDate, getMonth, getYear,
+  addDays, format, getDate, getMonth, getYear, parse,
 } from 'date-fns';
 
 const selectActionsDomain = (state) => state.action;
@@ -81,11 +81,27 @@ export const selectDeletedActionLoading = createSelector(
 
 export const selectActionsGroupedByDay = createSelector(
   selectAllActions,
-  (actions) => actions.reduce((actionsGroupedByDay, action) => {
-    const date = format(new Date(action.date), 'MM/dd/yyyy');
-    return {
-      ...actionsGroupedByDay,
-      [date]: Array.isArray(actionsGroupedByDay[date]) ? actionsGroupedByDay[date].concat([action]) : [action],
-    };
-  }, {}),
+  (actions) => {
+    const groupedActions = actions
+      .reduce((actionsGroupedByDay, action) => {
+        const date = format(new Date(action.date), 'MM/dd/yyyy');
+        return {
+          ...actionsGroupedByDay,
+          [date]: Array.isArray(actionsGroupedByDay[date]) ? actionsGroupedByDay[date].concat([action]) : [action],
+        };
+      }, {});
+
+    return Object.keys(groupedActions)
+      .sort((a, b) => {
+        const dateA = parse(a, 'MM/dd/yyyy', new Date());
+        const dateB = parse(b, 'MM/dd/yyyy', new Date());
+        if (dateA.getTime() > dateB.getTime()) {
+          return -1;
+        } if (dateA.getTime() < dateB.getTime()) {
+          return 1;
+        }
+        return 0;
+      })
+      .reduce((prev, key) => ({ ...prev, [key]: groupedActions[key] }), {});
+  },
 );

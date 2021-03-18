@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 // Selectors
 import { selectAuth } from '../../selectors/auth';
 import { selectLoading, selectError } from '../../selectors/app';
+import { selectComplete } from '../../selectors/action';
 
 // Actions
 import { saveAction, resetAction } from '../../actions/action';
@@ -19,6 +20,7 @@ export default (props) => {
   return React.createElement(ActionCreateForm, {
     ...props,
     auth: useSelector(selectAuth),
+    complete: useSelector(selectComplete),
     error: useSelector(selectError),
     loading: useSelector(selectLoading),
     navigation: useNavigation(),

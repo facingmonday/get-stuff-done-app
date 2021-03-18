@@ -7,6 +7,7 @@ import {
   StyleSheet,
   ImageBackground,
 } from 'react-native';
+
 import { Button, Spinner } from '@ui-kitten/components';
 import styles from './GetStartedScreen.styles';
 
@@ -42,7 +43,6 @@ const GetStartedScreen = ({ auth, navigation: { setOptions, navigate } }) => {
       style={{ width: '100%', height: '100%' }}
     >
       <View style={styles.getStartedScreen}>
-
         <View>
           <View style={styles.logoContainer}>
             <Image style={styles.image} source={{ uri: assets[2].localUri }} />

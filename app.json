@@ -1,9 +1,9 @@
 {
   "expo": {
     "name": "Get. Stuff. Done.",
-    "scheme": "com.creativejay.getstuffdone",
+    "scheme": "com.jasonprice.getstuffdone",
     "slug": "get-stuff-done-app",
-    "version": "2.0.8",
+    "version": "2.0.9",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -19,7 +19,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.creativejay.getstuffdone",
+      "bundleIdentifier": "com.jasonprice.getstuffdone",
       "config": {
         "usesNonExemptEncryption": false
       }
@@ -29,7 +29,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#000000"
       },
-      "versionCode": 208,
+      "versionCode": 209,
       "permissions": []
     },
     "web": {

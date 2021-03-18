@@ -45,7 +45,6 @@ export function* performFetchActionsAction(action = {}) {
   try {
     yield put(setLoading(true));
     const actions = yield call(fetchActionsApi, action.options);
-    console.log('actions', actions);
     if (actions?.length) {
       yield put(addMultipleActionToById(actions));
     }

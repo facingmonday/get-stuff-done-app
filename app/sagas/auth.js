@@ -44,6 +44,7 @@ import {
   signOut,
   loginWithFacebook,
   signInAnonymously,
+  updateProfile,
 } from '../apis/auth';
 
 const STATE_KEY = 'auth';
@@ -174,14 +175,19 @@ export function* performSignInAnonymouslyAction(action) {
   try {
     yield put(setLoading(true));
     const { user } = yield call(signInAnonymously);
-    console.log('user', user);
+
+    console.log('performSignInAnonymouslyAction 1', user);
     if (user) {
+      if (action?.options?.displayName) {
+        yield call(updateProfile, action.options);
+      }
       yield put(signInAnonymouslySuccess(user));
     } else {
       yield put(signInAnonymouslyFailure(new Error('Failed')));
     }
     yield put(setLoading(false));
   } catch (e) {
+    console.log('e', e);
     yield put(setError(e));
     yield put(setLoading(false));
   }

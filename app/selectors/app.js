@@ -9,10 +9,7 @@ export const selectApp = createSelector(
 
 export const selectLoading = createSelector(
   selectApp,
-  (app) => {
-    console.log('app.loading', app);
-    return app?.loading;
-  },
+  (app) => app?.loading,
 );
 
 export const selectLoaded = createSelector(

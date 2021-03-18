@@ -26,9 +26,14 @@ const HistoryScreen = ({
       title: 'HistoryScreen',
       headerShown: false,
     });
-    fetchActions();
+    fetchActions({
+      orderBy: {
+        fieldPath: 'date',
+        directionStr: 'desc',
+      },
+    });
   }, [isFocused]);
-
+  console.log('actions', actions);
   return (
     <Page>
       <View>
@@ -39,7 +44,7 @@ const HistoryScreen = ({
           <View style={{ marginBottom: 10 }}>
             <Text category="h5">{date}</Text>
             <View style={{ marginLeft: 10, marginTop: 5 }}>
-              { actions[date]?.length && actions[date].map((dateAction) => (
+              { Boolean(actions[date]?.length) && actions[date].map((dateAction) => (
                 <View style={{ display: 'flex', flexDirection: 'row' }}>
                   <View style={{ width: 30, height: 20 }}>
                     {

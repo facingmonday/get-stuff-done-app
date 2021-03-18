@@ -9,6 +9,10 @@ export const fetchActions = async (options = {}) => {
         query = query.where(o.field, o.opperand, o.value);
       });
     }
+    if (options?.orderBy) {
+      console.log('options.orderBy', options.orderBy);
+      query = query.orderBy(options.orderBy);
+    }
     const querySnapshot = await query.get();
     const results = [];
     querySnapshot.forEach((doc) => {

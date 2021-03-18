@@ -12,10 +12,9 @@ export default StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 20,
   },
   buttonStyles: {
-    alignSelf: 'center',
-    marginTop: 50,
     width: 200,
   },
   textStyles: {

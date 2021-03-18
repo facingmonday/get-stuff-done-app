@@ -127,3 +127,11 @@ export async function signInAnonymously() {
   await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
   return firebase.auth().signInAnonymously();
 }
+
+export async function updateProfile(profile) {
+  const { currentUser } = firebase.auth();
+  if (currentUser) {
+    return currentUser.updateProfile(profile);
+  }
+  return false;
+}
